@@ -1,12 +1,25 @@
-class UserProfileModel {
+import 'package:hive_flutter/hive_flutter.dart';
+part 'user_profile_model.g.dart';
+
+@HiveType(typeId: 0)
+class UserProfileModel extends HiveObject {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String username;
+  @HiveField(2)
   final String email;
+  @HiveField(3)
   final String firstName;
+  @HiveField(4)
   final String lastName;
+  @HiveField(5)
   final String gender;
+  @HiveField(6)
   final String image;
+  @HiveField(7)
   final String token;
+
   UserProfileModel({
     required this.id,
     required this.username,

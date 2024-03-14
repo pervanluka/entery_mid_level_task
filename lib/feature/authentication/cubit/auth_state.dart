@@ -2,27 +2,27 @@ import 'package:entery_mid_level_task/models/user_profile_model.dart';
 import 'package:entery_mid_level_task/service/failure/failure.dart';
 import 'package:equatable/equatable.dart';
 
-sealed class LoginState extends Equatable {
+sealed class AuthState extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class LoginInitial extends LoginState {}
+class AuthInitial extends AuthState {}
 
-class LoggedOutState extends LoginState {}
+class Unauthenticated extends AuthState {}
 
-class LoadingState extends LoginState {}
+class Authenticating extends AuthState {}
 
-class LoggedInState extends LoginState {
+class Authenticated extends AuthState {
   final UserProfileModel userProfileModel;
 
-  LoggedInState({required this.userProfileModel});
+  Authenticated({required this.userProfileModel});
 }
 
-class LoginFailure extends LoginState {
+class AuthenticateFailure extends AuthState {
   final Failure failure;
 
-  LoginFailure({required this.failure});
+  AuthenticateFailure({required this.failure});
 
   @override
   List<Object?> get props => [failure];

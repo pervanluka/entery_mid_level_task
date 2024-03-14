@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:entery_mid_level_task/service/dio_client.dart';
-import 'package:entery_mid_level_task/service/login/login_service.dart';
+import 'package:entery_mid_level_task/service/auth/auth_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,22 +15,34 @@ class ServiceLocator {
 
   Future<void> init() async {
     final sharedPreferences = await SharedPreferences.getInstance();
-
-    getIt.registerLazySingleton(() => sharedPreferences);
-    getIt.registerLazySingleton<FlutterSecureStorage>(
-      () => const FlutterSecureStorage(
-        aOptions: AndroidOptions(
-          encryptedSharedPreferences: true,
-        ),
+    const flutterSecureStorage = FlutterSecureStorage(
+      aOptions: AndroidOptions(
+        encryptedSharedPreferences: true,
       ),
     );
     getIt.registerLazySingleton(
+      () => sharedPreferences,
+    );
+    getIt.registerLazySingleton(
+      () => flutterSecureStorage,
+    );
+    getIt.registerFactory(
       () => Dio(),
     );
-    getIt.registerFactory(() => LoginService(
-          dioClient: DioClient(getService()),
-        ));
+    getIt.registerFactory(
+      () => DioClient(
+        getService(),
+        getService(),
+      ),
+    );
+    getIt.registerFactory<IAuthService>(
+      () => AuthService(
+        sharedPreferences: getService(),
+        dioClient: getService(),
+        flutterSecureStorage: getService(),
+      ),
+    );
   }
-
-  T getService<T extends Object>() => getIt<T>();
 }
+
+T getService<T extends Object>() => getIt<T>();

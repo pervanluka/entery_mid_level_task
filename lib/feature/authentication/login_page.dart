@@ -1,13 +1,12 @@
-import 'package:entery_mid_level_task/feature/home.dart';
-import 'package:entery_mid_level_task/feature/login/cubit/login_cubit.dart';
-import 'package:entery_mid_level_task/feature/login/cubit/login_state.dart';
+import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
+import 'package:entery_mid_level_task/feature/authentication/cubit/auth_state.dart';
 import 'package:entery_mid_level_task/feature/shared/app_text_field.dart';
-import 'package:entery_mid_level_task/shared/loading_overlay.dart';
 import 'package:flash/flash.dart';
 import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,30 +21,46 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is LoadingState) {
-          LoadingOverlay.instance.show(context);
-        }
-        if (state is LoginFailure) {
-          context.showFlash(
-            builder: (context, controller) => FlashBar(
-              content: Text(state.failure.description),
-              controller: controller,
-              behavior: FlashBehavior.floating,
-              // insetAnimationDuration: const Duration(seconds: 2),
+        if (state is Authenticating) {
+          showDialog(
+            context: context,
+            builder: (context) => const Material(
+              type: MaterialType.transparency,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator.adaptive(),
+                ],
+              ),
             ),
           );
         }
-        if (state is LoggedInState) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const Home(),
-            ),
+        if (state is AuthenticateFailure) {
+          Navigator.of(context).pop();
+          context.showErrorBar(
+            content: Text(state.failure.description),
+            position: FlashPosition.bottom,
+            duration: const Duration(seconds: 3),
           );
         }
-        LoadingOverlay.instance.hide(context);
+        if (state is Authenticated) {
+          Navigator.of(context).pop();
+          context.go('/home');
+        }
+        if (state is Unauthenticated) {
+          context.go('/login');
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -101,9 +116,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        context.read<LoginCubit>().login(
-                              _usernameController.text,
-                              _passwordController.text,
+                        context.read<AuthCubit>().login(
+                              _usernameController.text.trim(),
+                              _passwordController.text.trim(),
                             );
                       }
                     },
