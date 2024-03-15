@@ -1,3 +1,5 @@
+import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
+import 'package:entery_mid_level_task/feature/authentication/login_page.dart';
 import 'package:entery_mid_level_task/feature/home/home_page.dart';
 import 'package:entery_mid_level_task/feature/logs/log_page.dart';
 import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
@@ -27,7 +29,7 @@ final GoRouter router = GoRouter(
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => context.go("/home"),
+          onPressed: () => GoRouter.of(context).go("/home"),
           child: const Text("Go to home page"),
         ),
       ),
@@ -43,6 +45,17 @@ final GoRouter router = GoRouter(
   },
   refreshListenable: AuthNotifier(),
   routes: [
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => BlocProvider(
+        create: (_) => AuthCubit(
+          loginService: getService(),
+          flutterSecureStorage: getService(),
+          sharedPreferences: getService(),
+        ),
+        child: const LoginPage(),
+      ),
+    ),
     GoRoute(
       path: '/profile',
       builder: (context, state) => BlocProvider.value(

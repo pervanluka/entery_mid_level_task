@@ -42,7 +42,8 @@ class DioClient {
   }
 
   Future<void> _onError(DioException error, ErrorInterceptorHandler handler) async {
-    if (error.response != null && error.response!.statusCode == 403) {
+    if (error.response != null &&
+        (error.response!.statusCode == 403 || error.response!.statusCode == 401)) {
       try {
         final logger = Logger();
         final newToken = await getService<AuthService>().refreshToken();

@@ -18,6 +18,8 @@ class UserProfileState extends ProfileState {
   List<Object> get props => [profileModel];
 }
 
+class UserProfileReadyForSignOut extends ProfileState {}
+
 class UserProfileFailureState extends ProfileState {
   final Failure failure;
 

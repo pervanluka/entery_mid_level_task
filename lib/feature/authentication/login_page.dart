@@ -56,10 +56,10 @@ class _LoginPageState extends State<LoginPage> {
         }
         if (state is Authenticated) {
           Navigator.of(context).pop();
-          context.go('/home');
+          GoRouter.of(context).go('/home');
         }
         if (state is Unauthenticated) {
-          context.go('/login');
+          GoRouter.of(context).go('/login');
         }
       },
       builder: (context, state) {

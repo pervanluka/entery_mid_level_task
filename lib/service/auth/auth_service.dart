@@ -12,6 +12,7 @@ abstract interface class IAuthService {
   Future<Either<Failure, UserProfileModel>> login(String username, String password);
   Future<Either<Failure, UserProfileModel>> refreshToken();
   Future<Either<Failure, UserProfileModel>> getProfile();
+  void signOut();
   Future<void> saveUserModelToHive(UserProfileModel userModel);
   Future<UserProfileModel?> getUserModelFromHive();
 }
@@ -65,6 +66,7 @@ class AuthService implements IAuthService {
     }
   }
 
+  @override
   void signOut() {
     _flutterSecureStorage.deleteAll();
     _sharedPreferences.clear();

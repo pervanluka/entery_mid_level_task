@@ -3,6 +3,7 @@ import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -18,9 +19,6 @@ class ProfilePage extends StatelessWidget {
           body: Builder(
             builder: (context) {
               return switch (state) {
-                UserProfileInitialState() => const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  ),
                 UserProfileState() => Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -107,14 +105,14 @@ class ProfilePage extends StatelessWidget {
                             ),
                             onPressed: () {
                               context.read<ProfileCubit>().signOut();
-                              // context.go('/login');
+                              GoRouter.of(context).go('/login');
                             })
                       ],
                     ),
                   ),
                 _ => const Center(
-                    child: Text('Error'),
-                  )
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
               };
             },
           ),

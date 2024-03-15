@@ -26,7 +26,7 @@ class RootAppWrapper extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => ProfileCubit(
-            authService: getService(),
+            localStorage: getService(),
           )..init(),
         ),
       ],
@@ -59,38 +59,33 @@ class RootApp extends StatelessWidget {
         backgroundColor: Colors.indigo,
         centerTitle: false,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Material(
-              type: MaterialType.transparency,
-              child: InkWell(
-                onTap: () => GoRouter.of(context).push(
-                  '/profile',
-                  extra: context.read<ProfileCubit>(),
-                ),
-                child: BlocBuilder<ProfileCubit, ProfileState>(
-                  builder: (context, state) {
-                    return switch (state) {
-                      UserProfileInitialState() => const SizedBox.square(
-                          dimension: 30,
-                          child: CircularProgressIndicator.adaptive(),
-                        ),
-                      UserProfileState() => CircleAvatar(
-                          backgroundImage: CachedNetworkImageProvider(
-                            state.profileModel.image,
-                          ),
-                        ),
-                      _ => const CircleAvatar(
-                          child: Center(
-                            child: Icon(
-                              Icons.person,
-                            ),
-                          ),
-                        ),
-                    };
-                  },
-                ),
-              ),
+          IconButton(
+            onPressed: () => GoRouter.of(context).push(
+              '/profile',
+              extra: context.read<ProfileCubit>(),
+            ),
+            icon: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                if (state is UserProfileReadyForSignOut) {
+                  context.read<AuthCubit>().signOut();
+                }
+              },
+              builder: (context, state) {
+                return switch (state) {
+                  UserProfileInitialState() => const SizedBox.square(
+                      dimension: 40,
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                  UserProfileState() => CircleAvatar(
+                      backgroundImage: CachedNetworkImageProvider(
+                        state.profileModel.image,
+                      ),
+                    ),
+                  _ => const CircleAvatar(
+                      child: Icon(Icons.person),
+                    ),
+                };
+              },
             ),
           )
         ],
