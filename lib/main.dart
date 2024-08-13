@@ -9,17 +9,19 @@ import 'package:entery_mid_level_task/shared/app_theme.dart';
 import 'package:entery_mid_level_task/shared/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:logger/logger.dart';
 
 void main() {
   runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
     await ServiceLocator.instance.init();
     await HiveSetUp.init();
 
     Bloc.observer = AppBlocObserver();
-
+    FlutterNativeSplash.remove();
     runApp(const MyApp());
   }, (Object error, StackTrace stackTrace) async {
     final logger = Logger();

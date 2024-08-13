@@ -1,10 +1,12 @@
 import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
 import 'package:entery_mid_level_task/feature/authentication/login_page.dart';
+import 'package:entery_mid_level_task/feature/products/product_detail/product_detail.dart';
 import 'package:entery_mid_level_task/feature/products/products_page.dart';
 import 'package:entery_mid_level_task/feature/logs/log_page.dart';
 import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
 import 'package:entery_mid_level_task/feature/root_app.dart';
 import 'package:entery_mid_level_task/feature/profile/profile_page.dart';
+import 'package:entery_mid_level_task/models/products/products_model.dart';
 import 'package:entery_mid_level_task/service_locator.dart';
 import 'package:entery_mid_level_task/feature/authentication/notifier/auth_notifier.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,6 @@ final GoRouter router = GoRouter(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: const Text("Error Screen"),
-        backgroundColor: Colors.indigo,
       ),
       body: Center(
         child: ElevatedButton(
@@ -62,6 +63,14 @@ final GoRouter router = GoRouter(
         value: state.extra! as ProfileCubit,
         child: const ProfilePage(),
       ),
+    ),
+    GoRoute(
+      path: '/products/details/:id',
+      builder: (context, state) {
+        final String id = state.pathParameters['id']!;
+        final Product product = state.extra as Product;
+        return ProductDetailPage(id: id, product: product);
+      },
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

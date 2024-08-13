@@ -47,10 +47,6 @@ class ProductCard extends StatelessWidget {
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.white12,
-                        BlendMode.colorBurn,
-                      ),
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(12),

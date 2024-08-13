@@ -14,11 +14,7 @@ sealed class ProductsState extends Equatable {
 
 class ProductsInitial extends ProductsState {}
 
-class ProductsLoading extends ProductsState {
-  final LoadingType loadingType;
-
-  const ProductsLoading({required this.loadingType});
-}
+class ProductsLoading extends ProductsState {}
 
 class ProductsLoaded extends ProductsState {
   final Products data;

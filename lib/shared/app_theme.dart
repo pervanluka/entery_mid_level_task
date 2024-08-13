@@ -101,7 +101,7 @@ class AppTheme {
     error: AppColors.red,
     onPrimary: _lightFillColor,
     onSecondary: const Color(0xFF322942),
-    onSurface: const Color(0xFF241E30),
+    onSurface: const Color.fromARGB(38, 36, 30, 48),
     onError: _lightFillColor,
     brightness: Brightness.light,
     shadow: AppColors.primaryColor.withOpacity(0.1),

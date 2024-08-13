@@ -32,9 +32,7 @@ class ProductsCubit extends Cubit<ProductsState> {
         isLoadingMore: true,
       ));
     } else {
-      emit(
-        const ProductsLoading(loadingType: LoadingType.loading),
-      );
+      emit(ProductsLoading());
     }
 
     final result = await _productsRepository.getProducts(page: currentPage, limit: itemsPerPage);

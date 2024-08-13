@@ -4,6 +4,7 @@ import 'package:entery_mid_level_task/shared/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
@@ -100,8 +101,17 @@ class _ProductsPageState extends State<ProductsPage> {
                       return const Gap(30);
                     }
                   }
-                  return ProductCard(
-                    product: state.data.products[index],
+                  return InkWell(
+                    onTap: () {
+                      final product = state.data.products[index];
+                      GoRouter.of(context).push(
+                        '/products/details/${product.id}',
+                        extra: product,
+                      );
+                    },
+                    child: ProductCard(
+                      product: state.data.products[index],
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) => const Divider(
