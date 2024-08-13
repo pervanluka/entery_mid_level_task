@@ -6,11 +6,11 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final IAuthService _loginService;
+  final AuthService _loginService;
   final FlutterSecureStorage _flutterSecureStorage;
   final SharedPreferences _sharedPreferences;
   AuthCubit({
-    required IAuthService loginService,
+    required AuthService loginService,
     required FlutterSecureStorage flutterSecureStorage,
     required SharedPreferences sharedPreferences,
   })  : _loginService = loginService,
@@ -25,22 +25,22 @@ class AuthCubit extends Cubit<AuthState> {
     final response = await _loginService.login(username, password);
     logger.i('response: $response');
     await response.fold(
-      (l) {
-        logger.e(l.description);
+      (failure) {
+        logger.e(failure.description);
         emit(
           AuthenticateFailure(
-            failure: l,
+            failure: failure,
           ),
         );
         emit(Unauthenticated());
       },
-      (r) async {
+      (data) async {
         await Future.wait([
-          _flutterSecureStorage.write(key: 'token', value: r.token),
+          _flutterSecureStorage.write(key: 'token', value: data.token),
           _sharedPreferences.setBool('shouldStayLogged', true),
         ]);
-        logger.i(r.token);
-        emit(Authenticated(userProfileModel: r));
+        logger.i(data.token);
+        emit(Authenticated(userProfileModel: data));
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
+import 'package:entery_mid_level_task/shared/widgets/theme_switcher_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -14,7 +15,7 @@ class ProfilePage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.indigo,
+            actions: const [ThemeSwitcherButton()],
           ),
           body: Builder(
             builder: (context) {
@@ -96,12 +97,11 @@ class ProfilePage extends StatelessWidget {
                             label: const Text('Sign Out'),
                             icon: const Icon(Icons.logout),
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white70,
-                              backgroundColor: Colors.indigo,
                               minimumSize: const Size(
                                 double.infinity,
                                 48,
                               ),
+                              textStyle: Theme.of(context).textTheme.bodyLarge,
                             ),
                             onPressed: () {
                               context.read<ProfileCubit>().signOut();

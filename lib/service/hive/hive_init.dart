@@ -1,4 +1,4 @@
-import 'package:entery_mid_level_task/models/user_profile_model.dart';
+import 'package:entery_mid_level_task/models/user_profile/user_profile_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';

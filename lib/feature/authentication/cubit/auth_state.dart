@@ -1,4 +1,4 @@
-import 'package:entery_mid_level_task/models/user_profile_model.dart';
+import 'package:entery_mid_level_task/models/user_profile/user_profile_model.dart';
 import 'package:entery_mid_level_task/service/failure/failure.dart';
 import 'package:equatable/equatable.dart';
 

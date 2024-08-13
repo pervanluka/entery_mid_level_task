@@ -1,6 +1,6 @@
 import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
 import 'package:entery_mid_level_task/feature/authentication/cubit/auth_state.dart';
-import 'package:entery_mid_level_task/feature/shared/app_text_field.dart';
+import 'package:entery_mid_level_task/shared/widgets/app_text_field.dart';
 import 'package:flash/flash.dart';
 import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,9 @@ class _LoginPageState extends State<LoginPage> {
         }
         if (state is Authenticated) {
           Navigator.of(context).pop();
-          GoRouter.of(context).go('/home');
+          GoRouter.of(context).go(
+            '/products',
+          );
         }
         if (state is Unauthenticated) {
           GoRouter.of(context).go('/login');
@@ -66,65 +68,66 @@ class _LoginPageState extends State<LoginPage> {
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 16,
+              vertical: 48,
               horizontal: 32,
             ),
             child: Form(
               key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Center(
-                    child: Icon(
-                      Icons.lock_person,
-                      size: 150,
-                    ),
-                  ),
-                  const Gap(32),
-                  AppTextField(
-                    controller: _usernameController,
-                    label: 'Username',
-                    isObscureText: false,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Username is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const Gap(12),
-                  AppTextField(
-                    controller: _passwordController,
-                    label: 'Password',
-                    isObscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const Gap(32),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white70,
-                      backgroundColor: Colors.indigo,
-                      minimumSize: const Size(
-                        double.infinity,
-                        48,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Center(
+                      child: Icon(
+                        Icons.lock_person,
+                        size: 150,
                       ),
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<AuthCubit>().login(
-                              _usernameController.text.trim(),
-                              _passwordController.text.trim(),
-                            );
-                      }
-                    },
-                    child: const Text('Login'),
-                  ),
-                ],
+                    const Gap(32),
+                    AppTextField(
+                      controller: _usernameController,
+                      label: 'Username',
+                      isObscureText: false,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Username is required';
+                        }
+                        return null;
+                      },
+                    ),
+                    const Gap(12),
+                    AppTextField(
+                      controller: _passwordController,
+                      label: 'Password',
+                      isObscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password is required';
+                        }
+                        return null;
+                      },
+                    ),
+                    const Gap(32),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white70,
+                        backgroundColor: Colors.indigo,
+                        minimumSize: const Size(
+                          double.infinity,
+                          48,
+                        ),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          context.read<AuthCubit>().login(
+                                _usernameController.text.trim(),
+                                _passwordController.text.trim(),
+                              );
+                        }
+                      },
+                      child: const Text('Login'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:entery_mid_level_task/app_bloc_observer.dart';
+import 'package:entery_mid_level_task/feature/bloc_wrapper.dart';
+import 'package:entery_mid_level_task/feature/theme/theme_cubit.dart';
+import 'package:entery_mid_level_task/models/theme_entity/theme_mode_entity.dart';
 import 'package:entery_mid_level_task/service/hive/hive_init.dart';
 import 'package:entery_mid_level_task/service_locator.dart';
+import 'package:entery_mid_level_task/shared/app_theme.dart';
 import 'package:entery_mid_level_task/shared/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,15 +32,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.grey.shade800,
+    return BlocWrapper(
+      child: BlocBuilder<ThemeCubit, ThemeModeEntity>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            routerConfig: router,
+            theme: AppTheme.lightThemeData,
+            darkTheme: AppTheme.darkThemeData,
+            themeMode: state == ThemeModeEntity.dark
+                ? ThemeMode.dark
+                : state == ThemeModeEntity.light
+                    ? ThemeMode.light
+                    : ThemeMode.system,
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

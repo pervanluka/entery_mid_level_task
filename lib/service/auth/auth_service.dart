@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:entery_mid_level_task/models/user_profile_model.dart';
+import 'package:entery_mid_level_task/models/user_profile/user_profile_model.dart';
 import 'package:entery_mid_level_task/service/dio_exception.dart';
 import 'package:entery_mid_level_task/service/failure/failure.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

@@ -51,6 +51,8 @@ dependencies:
   go_router: ^13.2.0
   hive_flutter: ^1.1.0
   path_provider: ^2.1.2
+  google_fonts: ^6.2.1
+  bottom_navy_bar: ^6.1.0
 
 dev_dependencies:
   flutter_test:

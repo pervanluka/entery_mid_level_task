@@ -1,6 +1,6 @@
 // ignore_for_file: unused_field
 
-import 'package:entery_mid_level_task/models/user_profile_model.dart';
+import 'package:entery_mid_level_task/models/user_profile/user_profile_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

@@ -1,24 +1,24 @@
 import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
 import 'package:entery_mid_level_task/feature/authentication/login_page.dart';
-import 'package:entery_mid_level_task/feature/home/home_page.dart';
+import 'package:entery_mid_level_task/feature/products/products_page.dart';
 import 'package:entery_mid_level_task/feature/logs/log_page.dart';
 import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
 import 'package:entery_mid_level_task/feature/root_app.dart';
 import 'package:entery_mid_level_task/feature/profile/profile_page.dart';
 import 'package:entery_mid_level_task/service_locator.dart';
-import 'package:entery_mid_level_task/shared/auth_notifier.dart';
+import 'package:entery_mid_level_task/feature/authentication/notifier/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellHomeNavigatorKey = GlobalKey<NavigatorState>();
+final _shellProductsNavigatorKey = GlobalKey<NavigatorState>();
 final _shellLogsNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/home',
+  initialLocation: '/products',
   errorPageBuilder: (context, state) => MaterialPage(
     key: state.pageKey,
     child: Scaffold(
@@ -29,7 +29,7 @@ final GoRouter router = GoRouter(
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => GoRouter.of(context).go("/home"),
+          onPressed: () => GoRouter.of(context).go("/products"),
           child: const Text("Go to home page"),
         ),
       ),
@@ -65,18 +65,18 @@ final GoRouter router = GoRouter(
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return RootAppWrapper(
+        return RootApp(
           navigationShell: navigationShell,
         );
       },
       branches: [
         StatefulShellBranch(
-          navigatorKey: _shellHomeNavigatorKey,
+          navigatorKey: _shellProductsNavigatorKey,
           routes: [
             GoRoute(
-              path: '/home',
+              path: '/products',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: HomePage(),
+                child: ProductsPage(),
               ),
             ),
           ],
