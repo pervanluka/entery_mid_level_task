@@ -1,4 +1,5 @@
 import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
+import 'package:entery_mid_level_task/feature/sort/cubit/sort_cubit.dart';
 import 'package:entery_mid_level_task/feature/products/cubit/products_cubit.dart';
 import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
 import 'package:entery_mid_level_task/feature/theme/theme_cubit.dart';
@@ -38,6 +39,9 @@ class BlocWrapper extends StatelessWidget {
           create: (_) => ProductsCubit(
             productsRepository: getService(),
           )..getProducts(isRefresh: true),
+        ),
+        BlocProvider(
+          create: (_) => SortCubit(),
         ),
       ],
       child: child,

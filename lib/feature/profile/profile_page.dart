@@ -11,6 +11,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return Scaffold(
@@ -41,55 +42,52 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             Text(
                               state.profileModel.firstName,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: theme.textTheme.titleLarge,
                             ),
                             const Gap(8),
                             Text(
                               state.profileModel.lastName,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: theme.textTheme.titleLarge,
                             ),
                           ],
                         ),
                         const Gap(32),
                         Row(
                           children: [
-                            const Text(
+                            Text(
                               'Username: ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: theme.textTheme.bodyMedium,
                             ),
-                            Text(state.profileModel.username)
+                            Text(
+                              state.profileModel.username,
+                              style: theme.textTheme.titleMedium,
+                            ),
                           ],
                         ),
                         const Gap(8),
                         Row(
                           children: [
-                            const Text(
+                            Text(
                               'Gender: ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: theme.textTheme.bodyMedium,
                             ),
-                            Text(state.profileModel.gender)
+                            Text(
+                              state.profileModel.gender,
+                              style: theme.textTheme.titleMedium,
+                            ),
                           ],
                         ),
                         const Gap(8),
                         Row(
                           children: [
-                            const Text(
+                            Text(
                               'E-mail: ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: theme.textTheme.bodyMedium,
                             ),
-                            Text(state.profileModel.email)
+                            Text(
+                              state.profileModel.email,
+                              style: theme.textTheme.titleMedium,
+                            ),
                           ],
                         ),
                         const Spacer(),

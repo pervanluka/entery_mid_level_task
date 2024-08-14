@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:entery_mid_level_task/models/products/products_model.dart';
+import 'package:entery_mid_level_task/shared/widgets/skeleton_animation.dart';
 import 'package:entery_mid_level_task/shared/widgets/start_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -24,7 +25,7 @@ class ProductDetailPage extends StatelessWidget {
         title: FittedBox(
           child: Text(
             product.title,
-            style: theme.textTheme.headlineMedium,
+            style: theme.textTheme.headlineMedium!.copyWith(color: theme.colorScheme.onPrimary),
           ),
         ),
       ),
@@ -42,9 +43,21 @@ class ProductDetailPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
                   ),
-                  child: CachedNetworkImage(
-                    imageUrl: product.images[index],
-                    fit: BoxFit.cover,
+                  child: Hero(
+                    tag: product.id,
+                    child: CachedNetworkImage(
+                      placeholder: (context, url) => Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                        ),
+                        child: SkeletonAnimation(
+                          shimmerColor: Colors.grey.shade400,
+                          child: const SizedBox.shrink(),
+                        ),
+                      ),
+                      imageUrl: product.images[index],
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 );
               },
@@ -81,15 +94,15 @@ class ProductDetailPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Icon(
-          Icons.shopping_bag_outlined,
+      floatingActionButton: SizedBox(
+        width: MediaQuery.sizeOf(context).width - 32,
+        child: FloatingActionButton.extended(
+          label: const Text('Add to Cart'),
+          icon: const Icon(Icons.shopping_bag_outlined),
+          onPressed: () => (),
         ),
-        onPressed: () => (),
-        // child: const Icon(
-        //   Icons.shopping_bag_outlined,
-        // ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

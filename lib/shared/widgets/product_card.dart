@@ -24,33 +24,35 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CachedNetworkImage(
-                height: constraints.maxHeight,
-                width: constraints.maxWidth * 0.4,
-                fit: BoxFit.cover,
-                imageUrl: product.thumbnail,
-                placeholder: (context, url) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    shape: BoxShape.circle,
-                  ),
-                  child: SkeletonAnimation(
-                    shimmerColor: Colors.grey.shade400,
-                    child: const SizedBox.shrink(),
-                  ),
-                ),
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white.withOpacity(0.1)
-                        : Colors.black.withOpacity(0.1),
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+              Hero(
+                tag: product.id,
+                child: CachedNetworkImage(
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth * 0.4,
+                  fit: BoxFit.cover,
+                  imageUrl: product.thumbnail,
+                  placeholder: (context, url) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
                     ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
+                    child: SkeletonAnimation(
+                      shimmerColor: Colors.grey.shade400,
+                      child: const SizedBox.shrink(),
+                    ),
+                  ),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white.withOpacity(0.1)
+                          : Colors.black.withOpacity(0.1),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                      ),
                     ),
                   ),
                 ),
@@ -68,12 +70,11 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      FittedBox(
+                      Flexible(
                         child: Text(
                           product.title,
                           style: theme.textTheme.titleMedium,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.end,
                         ),
                       ),
                       FittedBox(

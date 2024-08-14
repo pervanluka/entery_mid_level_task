@@ -7,12 +7,14 @@ class AppTextField extends StatefulWidget {
     required this.label,
     required this.isObscureText,
     this.validator,
+    this.textInputAction = TextInputAction.done,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String label;
   final bool isObscureText;
   final String? Function(String?)? validator;
+  final TextInputAction textInputAction;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -29,9 +31,11 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return TextFormField(
       obscureText: _obscureText,
       controller: widget.controller,
+      textInputAction: widget.textInputAction,
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       decoration: InputDecoration(
         label: Text(
@@ -40,15 +44,15 @@ class _AppTextFieldState extends State<AppTextField> {
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Colors.white30, width: 1),
+          borderSide: BorderSide(color: theme.colorScheme.primary, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Colors.white30, width: 1),
+          borderSide: BorderSide(color: theme.colorScheme.primary, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Colors.white30, width: 2.0),
+          borderSide: BorderSide(color: theme.colorScheme.primary, width: 2.0),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),

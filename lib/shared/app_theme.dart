@@ -4,13 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const _lightFillColor = Colors.black;
-
-  static const Color _lightFocusColor = Colors.black12;
-  static const Color _darkFocusColor = Colors.white12;
-
-  static ThemeData lightThemeData = _themeData(lightColorScheme, _lightFocusColor);
-  static ThemeData darkThemeData = _themeData(darkColorScheme, _darkFocusColor);
+  static ThemeData lightThemeData = _themeData(lightColorScheme, AppColors.grey70);
+  static ThemeData darkThemeData = _themeData(darkColorScheme, DarkAppColors.grey70);
 
   static ThemeData _themeData(ColorScheme colorScheme, Color focusColor) {
     return ThemeData(
@@ -29,21 +24,22 @@ class AppTheme {
         titleTextStyle: GoogleFonts.lato(
           fontSize: Sizes.TEXT_SIZE_20,
           color: colorScheme.onPrimary,
-          fontWeight: _bold,
+          fontWeight: FontWeight.bold,
         ),
         iconTheme: IconThemeData(
           color: colorScheme.onPrimary,
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-          backgroundColor: colorScheme.primary,
-          indicatorColor: colorScheme.onPrimary.withOpacity(0.15),
-          labelTextStyle: WidgetStateTextStyle.resolveWith(
-            (states) => TextStyle(
-              color: colorScheme.onPrimary,
-              fontWeight: AppTheme._regular,
-            ),
-          )),
+        backgroundColor: colorScheme.primary,
+        indicatorColor: colorScheme.onPrimary.withOpacity(0.15),
+        labelTextStyle: WidgetStateTextStyle.resolveWith(
+          (states) => TextStyle(
+            color: colorScheme.onPrimary,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: colorScheme.surface,
         selectedItemColor: colorScheme.onPrimary,
@@ -77,7 +73,7 @@ class AppTheme {
           textStyle: WidgetStateProperty.all<TextStyle>(
             GoogleFonts.lato(
               fontSize: Sizes.TEXT_SIZE_16,
-              fontWeight: _bold,
+              fontWeight: FontWeight.bold,
             ),
           ),
           padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
@@ -96,25 +92,25 @@ class AppTheme {
 
   static ColorScheme lightColorScheme = ColorScheme(
     primary: AppColors.primaryColor,
-    secondary: AppColors.primaryColor,
-    surface: const Color(0xFFFAFBFB),
+    secondary: AppColors.secondaryColor,
+    surface: AppColors.accentColor,
     error: AppColors.red,
-    onPrimary: _lightFillColor,
-    onSecondary: const Color(0xFF322942),
-    onSurface: const Color.fromARGB(38, 36, 30, 48),
-    onError: _lightFillColor,
+    onPrimary: AppColors.black,
+    onSecondary: const Color.fromARGB(255, 60, 60, 60),
+    onSurface: const Color.fromARGB(255, 60, 60, 60),
+    onError: AppColors.black,
     brightness: Brightness.light,
     shadow: AppColors.primaryColor.withOpacity(0.1),
   );
 
   static ColorScheme darkColorScheme = ColorScheme(
     primary: DarkAppColors.primary300,
-    secondary: DarkAppColors.primary300,
-    surface: DarkAppColors.offWhite,
+    secondary: DarkAppColors.secondaryColor,
+    surface: DarkAppColors.accentColor,
     error: DarkAppColors.red,
     onPrimary: DarkAppColors.black,
     onSecondary: DarkAppColors.primaryText1,
-    onSurface: DarkAppColors.primaryText1,
+    onSurface: DarkAppColors.primaryText2,
     onError: DarkAppColors.white,
     brightness: Brightness.dark,
     shadow: DarkAppColors.primary300.withOpacity(0.1),
@@ -125,79 +121,63 @@ class AppTheme {
       displayLarge: GoogleFonts.gloriaHallelujah(
         fontSize: Sizes.TEXT_SIZE_96,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       displayMedium: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_60,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       displaySmall: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_48,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       headlineLarge: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_34,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       headlineMedium: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_24,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       headlineSmall: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_20,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       titleLarge: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_18,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       titleMedium: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_14,
         color: colorScheme.onSurface,
-        fontWeight: _bold,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.bold,
       ),
       bodyLarge: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_16,
         color: colorScheme.onSurface,
-        fontWeight: _regular,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.w400,
       ),
       bodyMedium: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_14,
         color: colorScheme.onSurface,
-        fontWeight: _light,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.w300,
       ),
       labelLarge: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_16,
         color: colorScheme.onSurface,
-        fontStyle: FontStyle.normal,
-        fontWeight: _regular,
+        fontWeight: FontWeight.w400,
       ),
       labelMedium: GoogleFonts.lato(
         fontSize: Sizes.TEXT_SIZE_12,
         color: colorScheme.onSurface,
-        fontWeight: _regular,
-        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.w400,
       ),
     );
   }
-
-  static const _bold = FontWeight.w700;
-  static const _regular = FontWeight.w400;
-  static const _light = FontWeight.w300;
 }

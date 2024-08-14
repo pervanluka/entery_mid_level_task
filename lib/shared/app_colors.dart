@@ -69,8 +69,8 @@ class DarkAppColors {
   static const Color accentColor100 = Color(0xFF424242);
 
   // Text Colors
-  static const Color primaryText1 = Colors.white70; // Lightened for readability in dark mode
-  static const Color primaryText2 = Color(0xFFB0B0B0); // Slightly darker for secondary text
+  static const Color primaryText1 = Color(0xFFE0E0E0); // Lightened for readability in dark mode
+  static const Color primaryText2 = Color(0xFFC2C2C2); // Slightly darker for secondary text
 
   // Black
   static const Color black = Color(0xFFFFFFFF); // Reverse black and white for dark mode

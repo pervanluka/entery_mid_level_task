@@ -2,7 +2,7 @@ import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.da
 import 'package:entery_mid_level_task/feature/authentication/login_page.dart';
 import 'package:entery_mid_level_task/feature/products/product_detail/product_detail.dart';
 import 'package:entery_mid_level_task/feature/products/products_page.dart';
-import 'package:entery_mid_level_task/feature/logs/log_page.dart';
+import 'package:entery_mid_level_task/feature/sort/sort_page.dart';
 import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
 import 'package:entery_mid_level_task/feature/root_app.dart';
 import 'package:entery_mid_level_task/feature/profile/profile_page.dart';
@@ -96,7 +96,7 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: '/logs',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: LogsPage(),
+                child: SortPage(),
               ),
             ),
           ],

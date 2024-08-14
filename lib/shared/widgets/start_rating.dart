@@ -9,10 +9,10 @@ class StarRating extends StatelessWidget {
 
   const StarRating({
     Key? key,
-    required this.rating, // Rating value from 0.0 to 5.0
-    this.starSize = 16.0, // Size of each star
-    this.filledColor = Colors.amber, // Color of filled stars
-    this.unfilledColor = Colors.grey, // Color of unfilled stars
+    required this.rating,
+    this.starSize = 16.0,
+    this.filledColor = Colors.amber,
+    this.unfilledColor = Colors.grey,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,6 @@ class StarRating extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(5, (index) {
-            // Calculate the fill of each star
             double fillAmount = (rating - index).clamp(0.0, 1.0);
             return Icon(
               Icons.star,
