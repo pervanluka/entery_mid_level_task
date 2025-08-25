@@ -10,7 +10,6 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
-late final String objectBoxDbPath;
 
 class ServiceLocator {
   static final ServiceLocator instance = ServiceLocator._();

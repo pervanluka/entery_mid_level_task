@@ -30,7 +30,7 @@ class StarRating extends StatelessWidget {
               color: fillAmount == 1.0
                   ? filledColor
                   : fillAmount > 0.0
-                      ? filledColor.withOpacity(fillAmount)
+                      ? filledColor.withValues(alpha: fillAmount)
                       : unfilledColor,
             );
           }),

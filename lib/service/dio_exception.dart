@@ -1,60 +1,86 @@
 import 'package:dio/dio.dart';
+import 'package:entery_mid_level_task/service/failure/failure.dart';
 
-class DioExceptions implements Exception {
-  late String message;
-
-  DioExceptions.fromDioError(DioException dioException) {
+class DioExceptionHandler {
+  static Failure handleDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.cancel:
-        message = "Request to API server was cancelled";
-        break;
+        return Failure.requestCancelled();
+
       case DioExceptionType.connectionTimeout:
-        message = "Connection timeout with API server";
-        break;
+        return Failure.connectionTimeout();
+
       case DioExceptionType.receiveTimeout:
-        message = "Receive timeout in connection with API server";
-        break;
+        return Failure.receiveTimeout();
+
+      case DioExceptionType.sendTimeout:
+        return Failure.sendTimeout();
+
       case DioExceptionType.badResponse:
-        message = _handleError(
+        return _handleHttpError(
           dioException.response?.statusCode,
           dioException.response?.data,
         );
-        break;
-      case DioExceptionType.sendTimeout:
-        message = "Send timeout in connection with API server";
-        break;
+
       case DioExceptionType.unknown:
-        if (dioException.message!.contains("SocketException")) {
-          message = 'No Internet';
-          break;
-        }
-        message = "Unexpected error occurred";
-        break;
+        return _handleUnknownError(dioException);
+
       default:
-        message = "Something went wrong";
-        break;
+        return Failure.unexpectedError('Something went wrong');
     }
   }
 
-  String _handleError(int? statusCode, dynamic error) {
+  static Failure _handleHttpError(int? statusCode, dynamic error) {
     switch (statusCode) {
       case 400:
-        return 'Bad request';
+        String? errorMessage;
+        if (error is Map<String, dynamic> && error['message'] != null) {
+          errorMessage = error['message'].toString();
+        }
+        return Failure.badRequest(errorMessage);
+
       case 401:
-        return 'Unauthorized';
+        return Failure.unauthorized();
+
       case 403:
-        return 'Forbidden';
+        return Failure.forbidden();
+
       case 404:
-        return error['message'];
+        String? errorMessage;
+        if (error is Map<String, dynamic> && error['message'] != null) {
+          errorMessage = error['message'].toString();
+        }
+        return Failure.notFound(errorMessage);
+
       case 500:
-        return 'Internal server error';
+        return Failure.internalServerError();
+
       case 502:
-        return 'Bad gateway';
+        return Failure.badGateway();
+
+      case 503:
+        return Failure.serviceUnavailable();
+
       default:
-        return 'Oops something went wrong';
+        return Failure.unknownServerError('HTTP Error: ${statusCode ?? 'Unknown status code'}');
     }
   }
 
-  @override
-  String toString() => message;
+  static Failure _handleUnknownError(DioException dioException) {
+    final message = dioException.message ?? '';
+
+    // Check for network connectivity issues
+    if (message.contains('SocketException') ||
+        message.contains('Network is unreachable') ||
+        message.contains('No address associated with hostname')) {
+      return Failure.noNetwork();
+    }
+
+    // Check for timeout related issues in unknown errors
+    if (message.contains('timeout')) {
+      return Failure.connectionTimeout();
+    }
+
+    return Failure.unexpectedError('Unexpected error: $message');
+  }
 }

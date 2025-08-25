@@ -43,8 +43,8 @@ class ProductCard extends StatelessWidget {
                   imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white.withOpacity(0.1)
-                          : Colors.black.withOpacity(0.1),
+                          ? Colors.white.withValues(alpha: 0.1)
+                          : Colors.black.withValues(alpha: 0.1),
                       image: DecorationImage(
                         image: imageProvider,
                         fit: BoxFit.cover,

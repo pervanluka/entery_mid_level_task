@@ -14,7 +14,6 @@ class ProductWebApiService extends WebApiServiceBase implements IProductsReposit
   final logger = Logger();
 
   @override
-  @override
   Future<Either<Failure, Products>> getProducts({required int page, required int limit}) async {
     final skip = (page - 1) * limit;
     final path = 'products?skip=$skip&limit=$limit';

@@ -56,11 +56,8 @@ class AuthService implements IAuthService {
         return Left(Failure.unknownServerError(response.data['message']));
       }
     } on DioException catch (e) {
-      return Left(
-        Failure.unknownServerError(
-          DioExceptions.fromDioError(e).message,
-        ),
-      );
+      final failure = DioExceptionHandler.handleDioException(e);
+      return Left(failure);
     } catch (e) {
       return Left(Failure.unknownServerError(e.toString()));
     }
@@ -106,11 +103,8 @@ class AuthService implements IAuthService {
         return Left(Failure.unknownServerError(response.data['message']));
       }
     } on DioException catch (e) {
-      return Left(
-        Failure.unknownServerError(
-          DioExceptions.fromDioError(e).message,
-        ),
-      );
+      final failure = DioExceptionHandler.handleDioException(e);
+      return Left(failure);
     } catch (e) {
       return Left(Failure.unknownServerError(e.toString()));
     }

@@ -32,7 +32,7 @@ class AppTheme {
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: colorScheme.primary,
-        indicatorColor: colorScheme.onPrimary.withOpacity(0.15),
+        indicatorColor: colorScheme.onPrimary.withValues(alpha: 0.15),
         labelTextStyle: WidgetStateTextStyle.resolveWith(
           (states) => TextStyle(
             color: colorScheme.onPrimary,
@@ -62,9 +62,9 @@ class AppTheme {
           backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (states) {
               if (states.contains(WidgetState.pressed)) {
-                return colorScheme.primary.withOpacity(0.8);
+                return colorScheme.primary.withValues(alpha: 0.8);
               } else if (states.contains(WidgetState.disabled)) {
-                return colorScheme.onSurface.withOpacity(0.12);
+                return colorScheme.onSurface.withValues(alpha: 0.12);
               }
               return colorScheme.primary;
             },
@@ -100,7 +100,7 @@ class AppTheme {
     onSurface: const Color.fromARGB(255, 60, 60, 60),
     onError: AppColors.black,
     brightness: Brightness.light,
-    shadow: AppColors.primaryColor.withOpacity(0.1),
+    shadow: AppColors.primaryColor.withValues(alpha: 0.1),
   );
 
   static ColorScheme darkColorScheme = ColorScheme(
@@ -113,7 +113,7 @@ class AppTheme {
     onSurface: DarkAppColors.primaryText2,
     onError: DarkAppColors.white,
     brightness: Brightness.dark,
-    shadow: DarkAppColors.primary300.withOpacity(0.1),
+    shadow: DarkAppColors.primary300..withValues(alpha: 0.1),
   );
 
   static TextTheme _textTheme(ColorScheme colorScheme) {

@@ -31,11 +31,8 @@ abstract class WebApiServiceBase {
       );
       return Right(response);
     } on DioException catch (e) {
-      if (e.type == DioExceptionType.connectionTimeout) {
-        return Left(Failure.noNetwork());
-      } else {
-        return Left(Failure.unknownServerError(DioExceptions.fromDioError(e).message));
-      }
+      final failure = DioExceptionHandler.handleDioException(e);
+      return Left(failure);
     } catch (e) {
       return Left(Failure.unknownServerError('Unexpected error occurred: $e'));
     }
