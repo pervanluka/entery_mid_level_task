@@ -2,8 +2,8 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:async';
 
-import 'package:entery_mid_level_task/feature/sort/cubit/sort_state.dart';
-import 'package:entery_mid_level_task/models/heavy_task/heavy_task.dart';
+import 'package:entry_mid_level_task/feature/sort/cubit/sort_state.dart';
+import 'package:entry_mid_level_task/models/heavy_task/heavy_task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SortCubit extends Cubit<SortState> {

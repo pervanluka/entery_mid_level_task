@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:entery_mid_level_task/service/failure/failure.dart';
+import 'package:entry_mid_level_task/service/failure/failure.dart';
 
 class DioExceptionHandler {
   static Failure handleDioException(DioException dioException) {

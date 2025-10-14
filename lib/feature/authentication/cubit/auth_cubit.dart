@@ -1,5 +1,5 @@
-import 'package:entery_mid_level_task/feature/authentication/cubit/auth_state.dart';
-import 'package:entery_mid_level_task/service/auth/auth_service.dart';
+import 'package:entry_mid_level_task/feature/authentication/cubit/auth_state.dart';
+import 'package:entry_mid_level_task/service/auth/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';

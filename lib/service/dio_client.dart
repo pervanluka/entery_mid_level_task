@@ -1,8 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:entery_mid_level_task/constants/app_endpoints.dart';
-import 'package:entery_mid_level_task/service/auth/auth_service.dart';
-import 'package:entery_mid_level_task/service_locator.dart';
+import 'package:entry_mid_level_task/constants/app_endpoints.dart';
+import 'package:entry_mid_level_task/service/auth/auth_service.dart';
+import 'package:entry_mid_level_task/service_locator.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
 
@@ -89,9 +89,7 @@ class DioClient {
 
       if (includeTokenProtection) {
         String? token = await flutterSecureStorage.read(key: 'token');
-        if (token != null) {
-          options.headers?['Authorization'] = 'Bearer $token';
-        }
+        options.headers?['Authorization'] = 'Bearer $token';
       }
       final Response response = await _dio.request(
         url,

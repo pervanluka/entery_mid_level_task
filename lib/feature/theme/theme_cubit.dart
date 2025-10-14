@@ -1,5 +1,5 @@
-import 'package:entery_mid_level_task/models/theme_entity/theme_mode_entity.dart';
-import 'package:entery_mid_level_task/service/theme/theme_service.dart';
+import 'package:entry_mid_level_task/models/theme_entity/theme_mode_entity.dart';
+import 'package:entry_mid_level_task/service/theme/theme_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThemeCubit extends Cubit<ThemeModeEntity> {

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:entery_mid_level_task/models/products/products_model.dart';
-import 'package:entery_mid_level_task/service/failure/failure.dart';
-import 'package:entery_mid_level_task/service/web_api_base_service.dart';
+import 'package:entry_mid_level_task/models/products/products_model.dart';
+import 'package:entry_mid_level_task/service/failure/failure.dart';
+import 'package:entry_mid_level_task/service/web_api_base_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 

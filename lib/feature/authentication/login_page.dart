@@ -1,6 +1,6 @@
-import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
-import 'package:entery_mid_level_task/feature/authentication/cubit/auth_state.dart';
-import 'package:entery_mid_level_task/shared/widgets/app_text_field.dart';
+import 'package:entry_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
+import 'package:entry_mid_level_task/feature/authentication/cubit/auth_state.dart';
+import 'package:entry_mid_level_task/shared/widgets/app_text_field.dart';
 import 'package:flash/flash.dart';
 import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';

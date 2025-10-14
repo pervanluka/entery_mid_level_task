@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:entery_mid_level_task/service/dio_exception.dart';
+import 'package:entry_mid_level_task/service/dio_exception.dart';
 
 import 'dio_client.dart';
 import 'failure/failure.dart';

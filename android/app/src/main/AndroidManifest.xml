@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="entery_mid_level_task"
+        android:label="Entry Mid Level Task"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

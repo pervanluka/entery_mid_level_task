@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
-import 'package:entery_mid_level_task/shared/widgets/theme_switcher_button.dart';
+import 'package:entry_mid_level_task/feature/profile/cubit/profile_cubit.dart';
+import 'package:entry_mid_level_task/shared/widgets/theme_switcher_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';

@@ -1,6 +1,6 @@
-import 'package:entery_mid_level_task/models/products/products_model.dart';
-import 'package:entery_mid_level_task/service/failure/failure.dart';
-import 'package:entery_mid_level_task/service/products/products_service.dart';
+import 'package:entry_mid_level_task/models/products/products_model.dart';
+import 'package:entry_mid_level_task/service/failure/failure.dart';
+import 'package:entry_mid_level_task/service/products/products_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

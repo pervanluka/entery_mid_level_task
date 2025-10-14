@@ -1,9 +1,9 @@
-import 'package:entery_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
-import 'package:entery_mid_level_task/feature/sort/cubit/sort_cubit.dart';
-import 'package:entery_mid_level_task/feature/products/cubit/products_cubit.dart';
-import 'package:entery_mid_level_task/feature/profile/cubit/profile_cubit.dart';
-import 'package:entery_mid_level_task/feature/theme/theme_cubit.dart';
-import 'package:entery_mid_level_task/service_locator.dart';
+import 'package:entry_mid_level_task/feature/authentication/cubit/auth_cubit.dart';
+import 'package:entry_mid_level_task/feature/sort/cubit/sort_cubit.dart';
+import 'package:entry_mid_level_task/feature/products/cubit/products_cubit.dart';
+import 'package:entry_mid_level_task/feature/profile/cubit/profile_cubit.dart';
+import 'package:entry_mid_level_task/feature/theme/theme_cubit.dart';
+import 'package:entry_mid_level_task/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

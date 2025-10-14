@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:entery_mid_level_task/service/dio_client.dart';
-import 'package:entery_mid_level_task/service/auth/auth_service.dart';
-import 'package:entery_mid_level_task/service/hive/local_storage.dart';
-import 'package:entery_mid_level_task/service/products/products_service.dart';
-import 'package:entery_mid_level_task/service/theme/theme_service.dart';
+import 'package:entry_mid_level_task/service/dio_client.dart';
+import 'package:entry_mid_level_task/service/auth/auth_service.dart';
+import 'package:entry_mid_level_task/service/hive/local_storage.dart';
+import 'package:entry_mid_level_task/service/products/products_service.dart';
+import 'package:entry_mid_level_task/service/theme/theme_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';

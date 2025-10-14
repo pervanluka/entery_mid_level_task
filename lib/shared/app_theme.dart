@@ -1,5 +1,5 @@
-import 'package:entery_mid_level_task/shared/app_colors.dart';
-import 'package:entery_mid_level_task/shared/sizes.dart';
+import 'package:entry_mid_level_task/shared/app_colors.dart';
+import 'package:entry_mid_level_task/shared/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

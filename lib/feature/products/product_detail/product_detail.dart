@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:entery_mid_level_task/models/products/products_model.dart';
-import 'package:entery_mid_level_task/shared/widgets/skeleton_animation.dart';
-import 'package:entery_mid_level_task/shared/widgets/start_rating.dart';
+import 'package:entry_mid_level_task/models/products/products_model.dart';
+import 'package:entry_mid_level_task/shared/widgets/skeleton_animation.dart';
+import 'package:entry_mid_level_task/shared/widgets/start_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
